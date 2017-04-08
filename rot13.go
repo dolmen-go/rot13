@@ -1,20 +1,5 @@
 package rot13
 
-var rot13tab [256]byte
-
-func init() {
-	for i := 0; i < 256; i++ {
-		rot13tab[i] = byte(i)
-	}
-	const lower = 'a' - 'A'
-	for i := 'A'; i < 'A'+13; i++ {
-		rot13tab[i] = byte(i + 13)
-		rot13tab[i+13] = byte(i)
-		rot13tab[i+lower] = byte(i + lower + 13)
-		rot13tab[i+lower+13] = byte(i + lower)
-	}
-}
-
 type Encoding struct{}
 
 func (Encoding) EncodedLen(n int) int { return n }
