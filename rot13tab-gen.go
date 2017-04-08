@@ -4,6 +4,7 @@ package main
 
 import (
 	"bytes"
+	"fmt"
 	"strconv"
 
 	"github.com/dolmen-go/codegen"
@@ -24,14 +25,13 @@ var rot13tab = [256]byte{
 	var b bytes.Buffer
 	b.Grow(4096)
 
-	for i := int(0); i < 'A'; i++ {
-		b.WriteString(strconv.Itoa(i))
-		b.WriteString(", ")
+	for i := int(0); i < 'A'-1; i++ {
+		fmt.Fprintf(&b, "%03o, ", i)
 		if i%16 == 15 {
 			b.WriteByte('\n')
 		}
 	}
-	b.WriteByte('\n')
+	b.WriteString("0100,\n")
 
 	for i := byte('A'); i < 'N'; i++ {
 		b.WriteByte('\'')
