@@ -21,6 +21,8 @@ go:
 # - "1.0"
 
 before_install:
+# Dump list of Go versions available, for debugging
+- "gimme --known"
 # "go get" supports "-t" only from go1.2
 - go get $( [[ `go version` != *' go1.1 '* ]] && echo "-t" ) -v ./...
 - "[[ `go version` != *' go1.2 '* ]] || go get code.google.com/p/go.tools/cmd/cover"
