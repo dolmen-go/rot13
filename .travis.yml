@@ -14,7 +14,7 @@ go:
 - 1.4.x
 - 1.3.x
 - 1.2.x
-  # Code coverage started with go 1.2 :(
+# Code coverage started with go 1.2 :(
 #- "1.1"
 # Travis is broken: for "1.0" it launches with go 1.7.4
 # https://travis-ci.org/dolmen-go/hexenc/jobs/342255514
@@ -25,7 +25,9 @@ before_install:
 - "gimme --known"
 # "go get" supports "-t" only from go1.2
 - go get $( [[ `go version` != *' go1.1 '* ]] && echo "-t" ) -v ./...
-- "[[ `go version` != *' go1.2 '* ]] || go get code.google.com/p/go.tools/cmd/cover"
+# - "[[ `go version` != *' go1.2 '* ]] || go get code.google.com/p/go.tools/cmd/cover"
+- "[[ `go version` != *' go1.2.'* ]] || go get code.google.com/p/go.tools/cmd/cover"
+- "[[ `go version` != *' go1.4.'* ]] || go get golang.org/x/tools/cmd/cover"
 
 script:
 - go test -coverprofile=coverage.txt -covermode=atomic
